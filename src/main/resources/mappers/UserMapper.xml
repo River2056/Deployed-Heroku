@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="tw.com.river.mapper.UserMapper">
+	
+	<!-- dao insert new user -->
+	<!-- Integer insert(User user); -->
+	<insert id="insert" parameterType="tw.com.river.bean.User">
+		INSERT INTO wts_users (
+			username, 
+			password, 
+			email, 
+			phone, 
+			created_user, 
+			created_time, 
+			modified_user, 
+			modified_time 
+		) 
+		VALUES (
+			#{username}, 
+			#{password}, 
+			#{email}, 
+			#{phone}, 
+			#{createdUser}, 
+			#{createdTime}, 
+			#{modifiedUser}, 
+			#{modifiedTime} 
+		);
+	</insert>
+	
+	<!-- Find user by id -->
+	<!-- User findUserById(Integer id); -->
+	<select id="findUserById" resultType="tw.com.river.bean.User">
+		SELECT 
+			id, 
+			username, 
+			password, 
+			email, 
+			phone, 
+			created_user 	AS createdUser, 
+			created_time 	AS createdTime, 
+			modified_user 	AS modifiedUser, 
+			modified_time 	AS modifiedTime 
+		FROM 
+			wts_users 
+		WHERE 
+			id = #{id}
+	</select>
+	
+	<!-- Find user by name -->
+	<!-- User findUserByUsername(String username); -->
+	<select id="findUserByUsername" resultType="tw.com.river.bean.User">
+		SELECT 
+			id, 
+			username, 
+			password, 
+			email, 
+			phone, 
+			created_user 	AS createdUser, 
+			created_time 	AS createdTime, 
+			modified_user 	AS modifiedUser, 
+			modified_time 	AS modifiedTime 
+		FROM 
+			wts_users 
+		WHERE 
+			username = #{username}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="tw.com.river.mapper.NoteMapper">
+	
+	<!-- dao insert method -->
+	<!-- Integer insert(Note note); -->
+	<insert id="insert" parameterType="tw.com.river.bean.Note" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO wts_note (
+			uid, 
+		    comment, 
+		    day, 
+		    start, 
+		    end, 
+		    created_user, 
+			created_time, 
+			modified_user, 
+			modified_time 
+		) 
+		VALUES (
+			#{uid}, 
+		    #{comment}, 
+		    #{day}, 
+		    #{start}, 
+		    #{end}, 
+		    #{createdUser}, 
+		    #{createdTime}, 
+		    #{modifiedUser}, 
+		    #{modifiedTime}
+		);
+	</insert>
+	
+	<!-- dao find specific note object -->
+	<!-- Note findNoteByUidAndId(
+			@Param("uid") Integer uid, 
+			@Param("id") Integer id); -->
+	<select id="findNoteByUidAndId" resultType="tw.com.river.bean.Note">
+		SELECT 
+		    id, 
+		    uid, 
+		    comment, 
+		    day, 
+		    start, 
+		    end, 
+		    created_user 	AS createdUser, 
+		    created_time 	AS createdTime, 
+		    modified_user 	AS modifiedUser, 
+		    modified_time 	AS modifiedTime 
+		FROM 
+		    wts_note 
+		WHERE 
+		    uid = #{uid} AND id = #{id};
+	</select>
+	
+	<!-- dao find all notes and put into a list -->
+	<!-- List<Note> findAllNotes(Integer uid); -->
+	<select id="findAllNotes" resultType="tw.com.river.bean.Note">
+		SELECT 
+		    id, 
+		    uid, 
+		    comment, 
+		    day, 
+		    start, 
+		    end, 
+		    created_user 	AS createdUser, 
+		    created_time 	AS createdTime, 
+		    modified_user 	AS modifiedUser, 
+		    modified_time 	AS modifiedTime 
+		FROM 
+		    wts_note 
+		WHERE 
+		    uid = #{uid} 
+		ORDER BY 
+			day DESC;
+	</select>
+	
+	<!-- dao delete a note -->
+	<!-- Integer delete(
+			@Param("uid") Integer uid, 
+			@Param("id") Integer id); -->
+	<delete id="delete">
+		DELETE FROM 
+			wts_note 
+		WHERE 
+			uid = #{uid} AND id = #{id};
+	</delete>
+	
+	
+</mapper>
+
+
+
+
+
+
+

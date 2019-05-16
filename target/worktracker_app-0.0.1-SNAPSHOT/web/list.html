@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <title>List</title>
+
+    <style>
+    .card {
+        margin: 20px 0 0 0;
+    }
+
+    .card .card-header {
+        font-size: 24px;
+    }
+
+    .card .btn {
+        width: 100px;
+    }
+
+    .card-body .btn-danger {
+        float: right;
+    }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Add Work Days</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Check Work Days</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Logout</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <div class="card bg-light">
+            <div class="card-header">
+                2019-05-10
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>學習發送電文</p>
+                    <p>上班: <span id="work">08:48:50</span> 下班: <span id="rest">18:37:55</span></p>
+                    <input type="button" value="EDIT" class="btn btn-primary">
+                    <input type="button" value="DELETE" class="btn btn-danger">
+                </blockquote>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                2019-05-09
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>學習寫業務邏輯</p>
+                    <p>上班: <span id="work">08:48:55</span> 下班: <span id="rest">18:50:57</span></p>
+                    <input type="button" value="EDIT" class="btn btn-primary">
+                    <input type="button" value="DELETE" class="btn btn-danger">
+                </blockquote>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                2019-05-08
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>熟悉環境</p>
+                    <p>上班: <span id="work">08:45:37</span> 下班: <span id="rest">18:40:55</span></p>
+                    <input type="button" value="EDIT" class="btn btn-primary">
+                    <input type="button" value="DELETE" class="btn btn-danger">
+                </blockquote>
+            </div>
+        </div>
+
+        
+        
+    </div>
+
+    <script src="../js/jquery-3.4.0.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,7 @@
+.card .card-body .btn {
+    width: 100px;
+}
+
+.card .card-body .btn-danger {
+    float: right;
+}

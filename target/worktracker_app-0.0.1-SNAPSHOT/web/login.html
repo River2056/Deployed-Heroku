@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/button.css">
+    <title>WorkTracker System</title>
+
+    <style>
+    #login-form {
+        margin: 20% 0 10% 0;
+    }
+
+    #login-btn {
+        float: right;
+    }
+    
+    </style>
+
+</head>
+<body>
+    <header>
+        <h1 class="display-4">WTS System</h1>
+    </header>
+
+    <div class="container">
+
+        <div id="login-form" class="card card-body bg-light">
+            <form method="POST" id="form-input">
+
+                <div class="form-group">
+                    <label for="account">Account</label>
+                    <input type="text" class="form-control" id="account" placeholder="Enter account">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter Password">
+                </div>
+                
+                <button id="login-btn" type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -31,6 +31,13 @@ public interface IUserService {
 	Integer insert(User user);
 	
 	/**
+	 * For AJAX check purpose
+	 * @param username
+	 * @return
+	 */
+	boolean checkIfUserExists(String username);
+	
+	/**
 	 * Find user by id
 	 * @param id 
 	 * @return return a User object

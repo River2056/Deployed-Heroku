@@ -32,11 +32,12 @@
     <div class="container">
 
         <div id="register-form" class="card card-body bg-light">
-            <form method="POST" id="form-input">
+            <form id="form-input">
 
-                <div class="form-group">
+                <div id="username_box" class="form-group">
                     <label for="username">Username</label>
                     <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username">
+                    <div id="username_feedback" class="invalid-feedback"></div>
                 </div>
 
                 <div class="form-group">
@@ -65,6 +66,7 @@
     <script src="../js/jquery-3.4.0.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script type="text/javascript">
+    // register button click function
     $('#register-btn').click(function() {
     	var url = "handle_register.do";
     	var data = $('#form-input').serialize();
@@ -84,6 +86,38 @@
     		}
     	});
     });
+    
+    // username onfocus clear all class
+    $('#username').focus(function() {
+    	$(this).removeClass();
+    	$(this).addClass("form-control");
+    	$('#username_feedback').html("");
+    	$('#username_feedback').removeClass();
+    });
+    
+    // username onblur check if repeat, add classes
+    $('#username').blur(function() {
+    	$.ajax({
+    		url: "check_username.do",
+    		data: "username=" + $(this).val(),
+    		type: "GET",
+    		dataType: "json",
+    		success: function(jsonObj) {
+    			if(jsonObj.state == 1) {
+    				// success
+    				$('#username').addClass('is-valid');
+    				$('#username_feedback').text('用戶名可使用');
+    				$('#username_feedback').addClass('valid-feedback');
+    			} else {
+    				// fail
+    				$('#username').addClass('is-invalid');
+    				$('#username_feedback').text('用戶名已存在, 請改名!');
+    				$('#username_feedback').addClass('invalid-feedback');
+    			}
+    		}
+    	});
+    });
+    
     </script>
 </body>
 

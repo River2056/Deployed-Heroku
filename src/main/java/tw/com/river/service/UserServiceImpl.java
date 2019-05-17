@@ -46,6 +46,10 @@ public class UserServiceImpl implements IUserService {
 		
 	}
 	
+	public boolean checkIfUserExists(String username) {
+		return findUserByUsername(username) != null;
+	}
+	
 	public Integer insert(User user) {
 		return userMapper.insert(user);
 	}

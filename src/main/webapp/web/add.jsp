@@ -47,6 +47,7 @@
                     <div class="form-group">
                         <label for="comment">工作內容</label>
                         <input type="text" id="comment" name="comment" placeholder="重點內容註記" class="form-control">
+                        <div id="comment_feedback" class="invalid-feedback"></div>
                     </div>
 
                     <div class="form-group">
@@ -73,6 +74,7 @@
     <script src="../js/jquery-3.4.0.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/autoTimeInput.js"></script>
+    <script src="../js/checkForComment.js"></script>
     <script type="text/javascript">
     // day auto input value
     var date = new Date();
@@ -107,6 +109,8 @@
     	});
     });
     </script>
+    
+    
     
 </body>
 

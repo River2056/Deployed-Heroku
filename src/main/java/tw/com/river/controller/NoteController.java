@@ -29,11 +29,7 @@ public class NoteController extends BaseController {
 	}
 	
 	@RequestMapping("/list.do")
-	public String showListPage(ModelMap modelMap, HttpSession session) {
-		Integer uid = getUidFromSession(session);
-		List<Note> noteList = noteService.findAllNotes(uid);
-		modelMap.addAttribute("noteList", noteList);
-		
+	public String showListPage() {
 		return "list";
 	}
 	
@@ -44,6 +40,24 @@ public class NoteController extends BaseController {
 		modelMap.addAttribute("note", note);
 		
 		return "edit";
+	}
+	
+	@RequestMapping("/check_comment.do")
+	@ResponseBody
+	public ResponseResult<Void> checkForComment(String comment) {
+		boolean status = noteService.checkForComment(comment);
+		ResponseResult<Void> rr = status ? new ResponseResult<Void>(1) : new ResponseResult<Void>(0);
+		return rr;
+	}
+	
+	@RequestMapping("/get_list.do")
+	@ResponseBody
+	public ResponseResult<List<Note>> handleShowList(HttpSession session) {
+		ResponseResult<List<Note>> rr;
+		Integer uid = getUidFromSession(session);
+		List<Note> noteList = noteService.findAllNotes(uid);
+		rr = new ResponseResult<List<Note>>(1, noteList);
+		return rr;
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="/handle_add.do")

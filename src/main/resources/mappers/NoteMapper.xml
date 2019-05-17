@@ -71,7 +71,7 @@
 		WHERE 
 		    uid = #{uid} 
 		ORDER BY 
-			day DESC;
+			day, id DESC;
 	</select>
 	
 	<!-- dao delete a note -->

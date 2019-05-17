@@ -46,6 +46,13 @@ public interface INoteService {
 	Integer update(Note note);
 	
 	/**
+	 * check for comments(AJAX purpose)
+	 * @param comment
+	 * @return
+	 */
+	boolean checkForComment(String comment);
+	
+	/**
 	 * dao find specific note object
 	 * @param id note id
 	 * @return note object

@@ -17,8 +17,13 @@
         margin: 20% 0 10% 0;
     }
     
+    .card-body {
+    	padding: 0.7rem;
+    }
+    
     .card .card-body h3 {
     	text-align: center;
+    	font-size: 2.18rem;
     }
     </style>
     
@@ -28,8 +33,8 @@
 
     <div class="container">
         <div class="jumbotron text-center bg-light">
-            <h1 class="display-4">WorkTracker System</h1>
-            <p class="lead">上下班打卡系統</p>
+            <h1 class="display-4">WTS Note System</h1>
+            <p class="lead">Welcome, ${sessionScope.username }</p>
             <a href="${pageContext.request.contextPath }/note/add.do" class="btn btn-primary btn-lg" style="width: 100px;">ADD</a>
         </div>
 
@@ -69,7 +74,7 @@
         if (seconds < 10) {
             seconds = "0" + seconds; 
         }
-		let timeLine = year + " - " + month + " - " + day + " &nbsp;&nbsp; " + hours + " : " + minutes + " : " + seconds;
+		let timeLine = year + "-" + month + "-" + day + " &nbsp;&nbsp; " + hours + ":" + minutes + ":" + seconds;
         $('#current_time').html(timeLine);
     }
         

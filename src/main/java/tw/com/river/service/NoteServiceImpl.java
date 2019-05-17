@@ -55,6 +55,10 @@ public class NoteServiceImpl implements INoteService {
 	public Integer update(Note note) {
 		return noteMapper.update(note);
 	}
+	
+	public boolean checkForComment(String comment) {
+		return comment != null && !comment.isEmpty();
+	}
 
 	public Note findNoteByUidAndId(Integer uid, Integer id) {
 		return noteMapper.findNoteByUidAndId(uid, id);

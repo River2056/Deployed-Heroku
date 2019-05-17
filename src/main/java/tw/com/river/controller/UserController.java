@@ -71,6 +71,20 @@ public class UserController extends BaseController {
 		return rr;
 	}
 	
+	@RequestMapping("/check_username.do")
+	@ResponseBody
+	public ResponseResult<Void> checkForUsername(String username) {
+		ResponseResult<Void> rr;
+		boolean checkStatus = userService.checkIfUserExists(username);
+		if(checkStatus) {
+			// already exists a user, reject register
+			rr = new ResponseResult<Void>(0);
+		} else {
+			rr = new ResponseResult<Void>(1);
+		}
+		return rr;
+	}
+	
 	@RequestMapping("/logout.do")
 	public String handleLogout(HttpSession session) {
 		session.invalidate();

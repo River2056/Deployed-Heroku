@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import tw.com.river.bean.User;
 import tw.com.river.mapper.UserMapper;
+import tw.com.river.service.exception.PasswordNotFoundException;
 import tw.com.river.service.exception.PasswordNotMatchException;
 import tw.com.river.service.exception.UserNotFoundException;
 import tw.com.river.service.exception.UsernameAlreadyExistsException;
@@ -17,6 +18,9 @@ public class UserServiceImpl implements IUserService {
 	private UserMapper userMapper;
 	
 	public Integer register(User user) {
+		if(user.getPassword() == null || user.getPassword().isEmpty()) {
+			throw new PasswordNotFoundException("請輸入用戶密碼!");
+		}
 		User u = findUserByUsername(user.getUsername());
 		if(u != null) {
 			throw new UsernameAlreadyExistsException("用戶名重複, 請改用重試!");

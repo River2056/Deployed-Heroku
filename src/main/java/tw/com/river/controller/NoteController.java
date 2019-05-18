@@ -33,20 +33,22 @@ public class NoteController extends BaseController {
 		return "list";
 	}
 	
-	@RequestMapping("/edit.do")
-	public String showEditPage(Integer id, ModelMap modelMap, HttpSession session) {
-		Integer uid = getUidFromSession(session);
-		Note note = noteService.findNoteByUidAndId(uid, id);
-		modelMap.addAttribute("note", note);
-		
-		return "edit";
-	}
-	
 	@RequestMapping("/check_comment.do")
 	@ResponseBody
 	public ResponseResult<Void> checkForComment(String comment) {
 		boolean status = noteService.checkForComment(comment);
 		ResponseResult<Void> rr = status ? new ResponseResult<Void>(1) : new ResponseResult<Void>(0);
+		return rr;
+	}
+	
+	@RequestMapping("/get_note.do")
+	@ResponseBody
+	public ResponseResult<Note> handleShowNote(Integer id, HttpSession session) {
+		ResponseResult<Note> rr;
+		Integer uid = getUidFromSession(session);
+		Note note = noteService.findNoteByUidAndId(uid, id);
+		rr = new ResponseResult<Note>(1, note);
+		
 		return rr;
 	}
 	
@@ -99,7 +101,6 @@ public class NoteController extends BaseController {
 		ResponseResult<Void> rr;
 		Integer uid = getUidFromSession(session);
 		note.setUid(uid);
-		System.out.println(note);
 		try {
 			noteService.edit(note);
 			rr = new ResponseResult<Void>(1, "修改成功!");

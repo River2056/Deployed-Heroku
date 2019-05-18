@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import tw.com.river.bean.ResponseResult;
 import tw.com.river.bean.User;
 import tw.com.river.service.IUserService;
+import tw.com.river.service.exception.PasswordNotFoundException;
 import tw.com.river.service.exception.PasswordNotMatchException;
 import tw.com.river.service.exception.UserNotFoundException;
 import tw.com.river.service.exception.UsernameAlreadyExistsException;
@@ -44,6 +45,8 @@ public class UserController extends BaseController {
 		} catch (UsernameAlreadyExistsException e) {
 			rr = new ResponseResult<Void>(0, e);
 			
+		} catch (PasswordNotFoundException e) {
+			rr = new ResponseResult<Void>(0, e);
 		}
 		
 		return rr;
@@ -75,12 +78,15 @@ public class UserController extends BaseController {
 	@ResponseBody
 	public ResponseResult<Void> checkForUsername(String username) {
 		ResponseResult<Void> rr;
+		if(username == null || username.isEmpty()) {
+			return new ResponseResult<Void>(0, "用戶名不可為空!");
+		}
 		boolean checkStatus = userService.checkIfUserExists(username);
 		if(checkStatus) {
 			// already exists a user, reject register
-			rr = new ResponseResult<Void>(0);
+			rr = new ResponseResult<Void>(0, "用戶名已存在, 請改名!");
 		} else {
-			rr = new ResponseResult<Void>(1);
+			rr = new ResponseResult<Void>(1, "用戶名可使用");
 		}
 		return rr;
 	}

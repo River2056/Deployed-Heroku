@@ -10,6 +10,7 @@ public interface IUserService {
 	 * @param user object
 	 * @return new user id
 	 * @throws UsernameAlreadyExistsException
+	 * @throws PasswordNotFoundException
 	 */
 	Integer register(User user);
 	

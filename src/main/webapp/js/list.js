@@ -75,7 +75,7 @@ function showPopup(id) {
     
     $("#popup_content").css({
     	"left": ($(document).width() - $('#popup_content').width()) / 2 - 15,
-        "top": 150
+        "top": 90
     });
     
     

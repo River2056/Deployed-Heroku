@@ -32,11 +32,20 @@
     <c:import url="header_navbar.jsp"></c:import>
 
     <div class="container">
-        <div class="jumbotron text-center bg-light">
-            <h1 class="display-4">WTS Note System</h1>
-            <p class="lead">Welcome, ${sessionScope.username }</p>
-            <a href="${pageContext.request.contextPath }/note/add.do" class="btn btn-primary btn-lg" style="width: 100px;">ADD</a>
-        </div>
+		<div class="jumbotron text-center bg-light">
+			<h1 class="display-4">WTS Note System</h1>
+			<p class="lead">Welcome, ${sessionScope.username }</p>
+		<div class="btn-group">
+			<button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+			  aria-expanded="false">
+			  ADD
+			</button>
+			<div class="dropdown-menu">
+				<a class="dropdown-item" href="${pageContext.request.contextPath }/note/add.do">Add WorkDays</a>
+				<a class="dropdown-item" href="${pageContext.request.contextPath }/todo/list.do">Todo List</a>
+			</div>
+		</div>
+		</div>
 
         <div class="card bg-light">
             <div class="card-body">
@@ -48,7 +57,7 @@
 
     </div>
     <script src="../js/jquery-3.4.0.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
     <script>
     function currentTime() {
         let time = new Date();

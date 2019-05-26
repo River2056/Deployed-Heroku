@@ -35,6 +35,7 @@
 				<mvc:mapping path="/user/*"/>
 				<mvc:mapping path="/main/*"/>
 				<mvc:mapping path="/note/*"/>
+				<mvc:mapping path="/todo/*"/>
 				
 				<!-- 例外配置 -->
 				<mvc:exclude-mapping path="/user/login.do"/>

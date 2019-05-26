@@ -91,6 +91,7 @@
 			<version>4.12</version>
 		</dependency>
 		
+		<!-- heroku deploy required: web runner -->
 		<dependency>
   			<groupId>com.github.jsimone</groupId>
   			<artifactId>webapp-runner</artifactId>
@@ -99,6 +100,7 @@
 		</dependency>
   </dependencies>
   
+  <!-- web runner plugin -->
   <build>
   	<plugins>
       <plugin>

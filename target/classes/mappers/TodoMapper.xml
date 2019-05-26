@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="tw.com.river.mapper.TodoMapper">
+	
+	<!-- Insert a new todo item -->
+	<!--  insert(Todo todo); -->
+	<insert id="insert" parameterType="tw.com.river.bean.Todo" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO wts_todolist (
+	  		uid, 
+	  		day, 
+	  		todo, 
+	  		created_user, 
+	  		created_time, 
+	  		modified_user, 
+	  		modified_time
+		) 
+		VALUES (
+	  		#{uid}, 
+	  		#{day}, 
+	  		#{todo}, 
+	  		#{createdUser}, 
+	  		#{createdTime}, 
+	  		#{modifiedUser}, 
+	  		#{modifiedTime}
+		);
+	</insert>
+	
+	<!-- Get user's todo list -->
+	<!-- List<Todo> getAllItems(uid); -->
+	<select id="getAllItems" resultType="tw.com.river.bean.Todo">
+		SELECT 
+			id, 
+	  		uid, 
+	  		day, 
+	  		todo, 
+	  		created_user 	AS createdUser, 
+	  		created_time 	AS createdTime, 
+	  		modified_user 	AS modifiedUser, 
+	  		modified_time 	AS modifiedTime 
+		FROM 
+			wts_todolist 
+		WHERE 
+			uid = #{uid} 
+		ORDER BY 
+			day DESC, 
+			id DESC;
+	</select>
+	
+	<!-- Get a single todo item -->
+	<!-- Todo getSingleItem(Integer uid, Integer id); -->
+	<select id="getSingleItem" resultType="tw.com.river.bean.Todo">
+		SELECT 
+			id, 
+	  		uid, 
+	  		day, 
+	  		todo, 
+	  		created_user 	AS createdUser, 
+	  		created_time 	AS createdTime, 
+	  		modified_user 	AS modifiedUser, 
+	  		modified_time 	AS modifiedTime 
+		FROM 
+			wts_todolist 
+		WHERE 
+			uid = #{uid} AND id = #{id};
+	</select>
+	
+	<!-- Delete a todo item -->
+	<!-- Integer delete(
+			@Param("uid") Integer uid, 
+			@Param("id") Integer id); -->
+	<delete id="delete">
+		DELETE FROM 
+			wts_todolist 
+		WHERE 
+			uid = #{uid} AND id = #{id};
+	</delete>
+	
+	<!-- Clear todo list -->
+	<!-- Integer deleteAll(Integer uid); -->
+	<delete id="deleteAll">
+		DELETE FROM 
+			wts_todolist 
+		WHERE 
+			uid = #{uid};
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
+

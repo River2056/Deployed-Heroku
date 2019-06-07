@@ -6,7 +6,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import tw.com.river.bean.Note;
 import tw.com.river.bean.ResponseResult;
 import tw.com.river.service.INoteService;
+import tw.com.river.service.exception.DataNotFoundException;
 import tw.com.river.service.exception.NoNoteEntryException;
 
 @Controller
@@ -87,9 +87,25 @@ public class NoteController extends BaseController {
 			noteService.delete(uid, id);
 			rr = new ResponseResult<Void>(1, "刪除成功!");
 			
-		} catch (Exception e) {
+		} catch (DataNotFoundException e) {
 			rr = new ResponseResult<Void>(0, e);
 			
+		}
+		
+		return rr;
+	}
+	
+	@RequestMapping("/handle_delete_all.do")
+	@ResponseBody
+	public ResponseResult<Void> handleDeleteAllRecords(HttpSession session) {
+		ResponseResult<Void> rr;
+		Integer uid = getUidFromSession(session);
+		try {
+			noteService.deleteAllRecord(uid);
+			rr = new ResponseResult<Void>(1, "刪除成功!");
+			
+		} catch (DataNotFoundException e) {
+			rr = new ResponseResult<Void>(0, e);
 		}
 		
 		return rr;

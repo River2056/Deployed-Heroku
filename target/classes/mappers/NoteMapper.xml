@@ -86,6 +86,14 @@
 			uid = #{uid} AND id = #{id};
 	</delete>
 	
+	<!-- Delete all records -->
+	<!-- Integer deleteAllRecord(Integer uid); -->
+	<delete id="deleteAllRecord">
+		DELETE FROM wts_note 
+		WHERE 
+			uid = #{uid}
+	</delete>
+	
 	<!-- dao update a note -->
 	<!-- Integer update(Note note); -->
 	<update id="update" parameterType="tw.com.river.bean.Note">

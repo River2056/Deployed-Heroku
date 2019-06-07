@@ -60,6 +60,28 @@ function deleteNote(id) {
 	}
 };
 
+function clearList() {
+	var checkIfClear = confirm('確定要清除所有紀錄嗎?');
+	var url = "handle_delete_all.do";
+	if(checkIfClear) {
+		$.ajax({
+			url: url,
+			type: "GET",
+			dataType: "json",
+			success: function(jsonObj) {
+    			if(jsonObj.state != 1) {
+    				alert(jsonObj.message);
+    			}
+    			showListItems();
+    		},
+    		error: function() {
+    			alert("登入訊息已過期, 請重新登入!");
+    			location.href = "../user/login.do";
+    		}
+		});
+	}
+}
+
 function showPopup(id) {
 	// 清空表單中各控件已有的值
 	$("#form-edit")[0].reset();

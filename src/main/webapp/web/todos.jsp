@@ -16,7 +16,7 @@
 
   <style>
   #add_todo, #clear_todo {
-    margin: 20px auto;
+    margin: 15px auto;
   }
 
   #listItems ul li input {

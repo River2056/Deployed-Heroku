@@ -43,14 +43,14 @@ public class NoteServiceImpl implements INoteService {
 	
 	public Integer delete(Integer uid, Integer id) {
 		Integer affectedRows = noteMapper.delete(uid, id);
-		if(affectedRows != 1) {
-			throw new DataNotFoundException("數據已不存在, 可能已經提前遭刪除");
-		}
-		
+		if(affectedRows != 1) throw new DataNotFoundException("數據已不存在, 可能已經提前遭刪除");
 		return affectedRows;
 	}
 	
-	
+	public Integer deleteAllRecord(Integer uid) {
+		Integer affectedRows = noteMapper.deleteAllRecord(uid);
+		return affectedRows;
+	}
 	
 	public Integer update(Note note) {
 		return noteMapper.update(note);

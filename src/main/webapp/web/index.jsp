@@ -14,16 +14,17 @@
 
     <style>
     .jumbotron {
-        margin: 20% 0 10% 0;
+        margin: 10% 0;
     }
     
     .card-body {
     	padding: 0.7rem;
     }
     
-    .card .card-body h3 {
-    	text-align: center;
-    	font-size: 2.18rem;
+    .card .card-body #current_time {
+    	display: flex;
+    	justify-content: center;
+    	font-size: 1.7rem;
     }
     </style>
     
@@ -33,7 +34,7 @@
 
     <div class="container">
 		<div class="jumbotron text-center bg-light">
-			<h1 class="display-4">WTS Note System</h1>
+			<h3>WTS Note System</h3>
 			<p class="lead">Welcome, ${sessionScope.username }</p>
 		<div class="btn-group">
 			<button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
@@ -46,11 +47,20 @@
 			</div>
 		</div>
 		</div>
+		
+		<div class="jumbotron text-center bg-light">
+			<h3>Top things to do~</h3>
+			<ul class="list-group" id="list_group">
+				<c:forEach items="${todoList }" var="list" end="2">
+					<li class="list-group-item list-group-item-primary">${list.day } ${list.todo }</li>
+				</c:forEach>
+      		</ul>
+		</div>
 
         <div class="card bg-light">
             <div class="card-body">
                 <blockquote class="blockquote mb-0">
-                    <h3 id="current_time">2019-05-11 18:30:55</h3>
+                    <h4 id="current_time">2019-05-11 18:30:55</h4>
                 </blockquote>
             </div>
         </div>

@@ -39,6 +39,13 @@ public interface INoteService {
 	Integer delete(Integer uid, Integer id);
 	
 	/**
+	 * Delete all records
+	 * @param uid user id
+	 * @return affected rows
+	 */
+	Integer deleteAllRecord(Integer uid);
+	
+	/**
 	 * dao update a note
 	 * @param note object
 	 * @return affected rows

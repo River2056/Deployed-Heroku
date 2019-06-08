@@ -1,10 +1,18 @@
 package tw.com.river.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -128,4 +136,63 @@ public class NoteController extends BaseController {
 		
 		return rr;
 	}
+	
+	@RequestMapping(value="/export.do", produces="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+	@ResponseBody
+	public byte[] exportExcel(HttpServletResponse response, HttpSession session) {
+		Integer uid = getUidFromSession(session);
+		List<Note> allNotes = noteService.findAllNotes(uid);
+		String fileName = "TimeSheet" + allNotes.get(0).getDay() + ".xlsx";
+		response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+		byte[] bytes = null;
+		try {
+			bytes = createExcel(allNotes);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return bytes;
+	}
+
+	private byte[] createExcel(List<Note> list) throws IOException {
+		XSSFWorkbook workbook = new XSSFWorkbook();
+		XSSFSheet sheet = workbook.createSheet("TimeSheet");
+		XSSFCellStyle style = workbook.createCellStyle();
+		XSSFRow headerRow = sheet.createRow(0);
+		headerRow.createCell(0).setCellValue("出勤表");
+		XSSFRow titleRow = sheet.createRow(1);
+		String[] forTitleRow = {"Date", "Comments", "Start", "End"};
+		for(int i = 0 ; i < 4 ; i++) {
+			XSSFCell cell = titleRow.createCell(i);
+			cell.setCellValue(forTitleRow[i]);
+		}
+		
+		// actual data insertion
+		for(int i = 0 ; i < list.size() ; i++) {
+			XSSFRow row = sheet.createRow(i + 2);
+			Note note = list.get(i);
+			String[] noteValues = {note.getDay(), note.getComment(), note.getStart(), note.getEnd()};
+			for(int j = 0 ; j < 4 ; j++) {
+				XSSFCell cell = row.createCell(j);
+				cell.setCellValue(noteValues[j]);
+			}
+		}
+		sheet.setColumnWidth(0, 5000);
+		sheet.setColumnWidth(1, 20000);
+		sheet.setColumnWidth(2, 4500);
+		sheet.setColumnWidth(3, 4500);
+		
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		workbook.write(out);
+		workbook.close();
+		out.close();
+		
+		byte[] bytes = out.toByteArray();
+		
+		return bytes;
+	}
+	
+//	private void setCellValueAndStyle(String value, XSSFCell cell, XSSFCellStyle style) {
+//		cell.setCellStyle(style);
+//		cell.setCellValue(value);
+//	}
 }

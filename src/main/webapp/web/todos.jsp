@@ -32,7 +32,7 @@
 
   <div class="container">
 
-    <input id="add_todo" type="button" value="Add Todo" onclick="showPopup()" class="btn btn-primary btn-lg btn-block">
+    <input id="add_todo" type="button" value="Add Todo" onclick="showPopup()" class="btn btn-info btn-lg btn-block">
     <input id="clear_todo" type="button" value="Clear TodoList" onclick="clearList()" class="btn btn-danger btn-lg btn-block">
 
     <div id="listItems" class="container">

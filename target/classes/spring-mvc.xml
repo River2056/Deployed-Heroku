@@ -29,6 +29,11 @@
 			<property name="suffix" value=".jsp"/>
 		</bean>
 		
+<!-- 		<bean id="iReportView" class="tw.com.river.report.ApplicationIReportView"> -->
+<!--         	<property name="url" value="/WEB-INF/jasper/report2.jasper"/> -->
+<!--         	<property name="reportDataKey" value="jrMainDataSource"/> -->
+<!--     	</bean> -->
+		
 		<!-- 攔截器配置 -->
 		<mvc:interceptors>
 			<mvc:interceptor>

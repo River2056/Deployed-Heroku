@@ -18,7 +18,7 @@
    	top: 32px;
 }
    
-#clear_list {
+#clear_list, #export_list {
 	margin: 15px 0 0 0;
 }
 

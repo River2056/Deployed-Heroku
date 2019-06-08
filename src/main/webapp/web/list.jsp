@@ -21,6 +21,7 @@
 <c:import url="header_navbar.jsp"></c:import>
 <div class="container">
 
+	<a href="export.do" id="export_list" class="btn btn-info btn-lg btn-block">Export all records</a>
 	<input id="clear_list" type="button" value="Clear all records" class="btn btn-danger btn-lg btn-block">
     <div id="listItems" class="container">
 		<!-- List of notes here using AJAX fetch -->

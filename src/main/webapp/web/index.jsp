@@ -14,7 +14,7 @@
 
     <style>
     .jumbotron {
-        margin: 10% 0;
+        margin: 15px 0;
     }
     
     .card-body {
@@ -26,6 +26,10 @@
     	justify-content: center;
     	font-size: 1.7rem;
     }
+    
+    #span_tag {
+    	display: inline-block;
+    }
     </style>
     
 </head>
@@ -33,6 +37,19 @@
     <c:import url="header_navbar.jsp"></c:import>
 
     <div class="container">
+    
+<!--     	<div class="card bg-light"> -->
+<!--             <div class="card-body"> -->
+<!--                 <blockquote class="blockquote mb-0"> -->
+<!-- 	                <ul class="list-group" id="list_group"> -->
+<!-- 						<li id="marquee" class="list-group-item list-group-item-primary"> -->
+<!-- 							<span id="span_tag">06-07 早點睡！</span> -->
+<!-- 						</li> -->
+<!-- 	     			</ul> -->
+<!--                 </blockquote> -->
+<!--             </div> -->
+<!--         </div> -->
+    
 		<div class="jumbotron text-center bg-light">
 			<h3>WTS Note System</h3>
 			<p class="lead">Welcome, ${sessionScope.username }</p>
@@ -98,6 +115,30 @@
     }
         
     setInterval(currentTime, 100);
+    </script>
+    <script type="text/javascript">
+    var dir = 2;
+    var task = null;
+    function marqueeRun() {
+    	window.setInterval(function() {
+    		var spanTag = document.getElementById('marquee');
+    		var oldmr = spanTag.style.marginRight;
+    		
+    		if(parseInt(oldmr) + spanTag.width+10 > window.innerWidth) {
+    			dir = -2;
+    		}else if(parseInt(oldmr) < 0) {
+    			dir = 2;
+    		}
+    		
+    		var newmr = parseInt(oldmr) + dir + "px";
+    		spanTag.style.marginRight = newmr;
+    		
+    	}, 30);
+    }
+    
+    $(function() {
+    	// marqueeRun();
+    });
     </script>
 </body>
 </html>

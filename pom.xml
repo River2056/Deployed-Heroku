@@ -88,7 +88,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<version>4.13.1</version>
 		</dependency>
 		
 		<!-- Apache 提供的MS Office API, 可以讀寫Excel文件, 生成Excel對象 -->
